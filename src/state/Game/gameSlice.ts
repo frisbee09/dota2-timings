@@ -2,11 +2,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { createSlice } from "@reduxjs/toolkit";
 import { GameTimer } from "./GameTimer";
+import {
+  DefaultGameEvents,
+  GameEvent,
+} from "../../components/Dashboard/components/Feed/events";
 
 export interface GameState {
   timer: number | null;
   pausedAt: number | null;
   isRunning: boolean;
+
+  activeEvents: GameEvent[];
+  feed: any[];
 
   currentTime: number;
 }
@@ -15,6 +22,8 @@ const initialState: GameState = {
   timer: null,
   pausedAt: null,
   isRunning: false,
+
+  activeEvents: DefaultGameEvents,
 
   currentTime: Date.now(),
 };
@@ -40,6 +49,7 @@ export const gameSlice = createSlice({
     tick: (state) => {
       state.currentTime = Date.now();
     },
+    addEvents: (state) => {},
   },
 });
 
