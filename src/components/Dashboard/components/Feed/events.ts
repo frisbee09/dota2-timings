@@ -52,4 +52,4 @@ const RuneEvents: { [key: string]: GameEvent } = {
   },
 };
 
-export const DefaultGameEvents = [...Object.values(RuneEvents)];
+export const DefaultGameEvents = { ...RuneEvents };
