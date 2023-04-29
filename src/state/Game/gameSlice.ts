@@ -7,12 +7,16 @@ export interface GameState {
   timer: number | null;
   pausedAt: number | null;
   isRunning: boolean;
+
+  currentTime: number;
 }
 
 const initialState: GameState = {
   timer: null,
   pausedAt: null,
   isRunning: false,
+
+  currentTime: Date.now(),
 };
 
 export const gameSlice = createSlice({
@@ -21,8 +25,7 @@ export const gameSlice = createSlice({
   reducers: {
     start: (state) => {
       state.isRunning = true;
-      const now = new Date().getTime();
-      state.timer = now - (state.pausedAt || 0);
+      state.timer = Date.now() - (state.pausedAt || 0);
       state.pausedAt = null;
     },
     pause: (state) => {
@@ -32,25 +35,25 @@ export const gameSlice = createSlice({
       state.isRunning = false;
 
       // Take a quick delta of the game's running length and persist in pausedAt
-      state.pausedAt = new Date().getTime() - state.timer;
+      state.pausedAt = GameTimer.fromTimestamp(state.timer).getDuration();
     },
     tick: (state) => {
-      const interval = GameTimer({ ms: state.timer || 0 });
+      state.currentTime = Date.now();
     },
   },
 });
 
-export const { start, pause } = gameSlice.actions;
+export const { start, pause, tick } = gameSlice.actions;
 
 export const getGameTime = (state: RootState) => {
   if (!state.game.timer) {
     return { minutes: "00", seconds: "00" };
   }
 
-  const gameTime = GameTimer({ ms: state.game.timer });
+  const gameTime = GameTimer.fromTimestamp(state.game.timer);
   return {
-    minutes: gameTime.getMinutes().toString().padStart(2, "0"),
-    seconds: gameTime.getSeconds().toString().padStart(2, "0"),
+    minutes: gameTime.getMinutes(),
+    seconds: gameTime.getSeconds(),
   };
 };
 

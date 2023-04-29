@@ -1,20 +1,23 @@
-interface GameTimerInit {
-  ms: number;
+export class GameTimer {
+  gameStart: Date;
+
+  constructor(duration?: number) {
+    this.gameStart = new Date(Date.now() - (duration || 0));
+  }
+
+  public getMinutes = () => {
+    return Math.floor(this.getDuration() / 1000 / 60);
+  };
+
+  public getSeconds = () => {
+    return Math.floor(this.getDuration() / 1000);
+  };
+
+  public getDuration = () => {
+    return Date.now() - this.gameStart.getTime();
+  };
+
+  static fromTimestamp = (time: number) => {
+    return new GameTimer(Date.now() - time);
+  };
 }
-
-const defaultInit: GameTimerInit = {
-  ms: 0,
-};
-
-export interface GameTimer extends Date {
-  getMinutes: () => number;
-}
-
-export const GameTimer = (init?: GameTimerInit): GameTimer => {
-  init = { ...defaultInit, ...init };
-
-  const date = new Date(init.ms);
-  date.getMinutes = () => date.getMilliseconds() % (60 * 1000);
-
-  return date;
-};
