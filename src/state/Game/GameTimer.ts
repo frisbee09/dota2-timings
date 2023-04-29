@@ -10,7 +10,7 @@ export class GameTimer {
   };
 
   public getSeconds = () => {
-    return Math.floor(this.getDuration() / 1000);
+    return Math.floor(this.getDuration() / 1000) % 60;
   };
 
   public getDuration = () => {
