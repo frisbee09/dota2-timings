@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dota2-timings/static/css/main.bb60ce08.css",
-    "main.js": "/dota2-timings/static/js/main.91656a4d.js",
+    "main.js": "/dota2-timings/static/js/main.c56067db.js",
     "static/js/787.44129723.chunk.js": "/dota2-timings/static/js/787.44129723.chunk.js",
     "index.html": "/dota2-timings/index.html",
     "main.bb60ce08.css.map": "/dota2-timings/static/css/main.bb60ce08.css.map",
-    "main.91656a4d.js.map": "/dota2-timings/static/js/main.91656a4d.js.map",
+    "main.c56067db.js.map": "/dota2-timings/static/js/main.c56067db.js.map",
     "787.44129723.chunk.js.map": "/dota2-timings/static/js/787.44129723.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bb60ce08.css",
-    "static/js/main.91656a4d.js"
+    "static/js/main.c56067db.js"
   ]
 }
