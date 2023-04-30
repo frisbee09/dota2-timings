@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/dota2-timings/static/css/main.dfeae637.css",
-    "main.js": "/dota2-timings/static/js/main.6f1e4101.js",
+    "main.js": "/dota2-timings/static/js/main.07e496fd.js",
     "static/js/787.44129723.chunk.js": "/dota2-timings/static/js/787.44129723.chunk.js",
     "static/media/Emoticon_water_rune.webp": "/dota2-timings/static/media/Emoticon_water_rune.27f38371bf97c21e0140.webp",
     "static/media/Emoticon_doubledamage.webp": "/dota2-timings/static/media/Emoticon_doubledamage.41234740775157bdfcca.webp",
     "static/media/Emoticon_bountyrune.webp": "/dota2-timings/static/media/Emoticon_bountyrune.1e11b00de0e3cda7f3b2.webp",
     "index.html": "/dota2-timings/index.html",
     "main.dfeae637.css.map": "/dota2-timings/static/css/main.dfeae637.css.map",
-    "main.6f1e4101.js.map": "/dota2-timings/static/js/main.6f1e4101.js.map",
+    "main.07e496fd.js.map": "/dota2-timings/static/js/main.07e496fd.js.map",
     "787.44129723.chunk.js.map": "/dota2-timings/static/js/787.44129723.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dfeae637.css",
-    "static/js/main.6f1e4101.js"
+    "static/js/main.07e496fd.js"
   ]
 }
