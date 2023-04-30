@@ -1,7 +1,7 @@
 import * as React from "react";
 import HeaderBar from "./Header";
 import Feed from "./components/Feed/Feed";
-import Actions from "./components/Actions/Actions";
+import Actions from "./components/Feed/ActiveEvents";
 import GameClock from "./components/GameClock/GameClock";
 
 interface IDashboardProps {}

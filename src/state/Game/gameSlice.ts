@@ -5,7 +5,7 @@ import { GameTimer } from "./GameTimer";
 import {
   DefaultGameEvents,
   GameEvent,
-} from "../../components/Dashboard/components/Feed/events";
+} from "../../components/Dashboard/components/Event/events";
 
 export interface GameState {
   timer: number | null;
@@ -47,6 +47,7 @@ export const gameSlice = createSlice({
       // Take a quick delta of the game's running length and persist in pausedAt
       state.pausedAt = GameTimer.fromTimestamp(state.timer).getDuration();
     },
+    reset: () => initialState,
     tick: (state) => {
       if (state.timer) {
         const gameTime = GameTimer.fromTimestamp(state.timer).getDuration();
@@ -62,7 +63,7 @@ export const gameSlice = createSlice({
           }
         );
 
-        state.feed.push(...eventsToAlert);
+        state.feed.push(...eventsToAlert.map((x) => ({ ...x })));
 
         eventsToAlert.forEach((event) => {
           // Check whether the event will recur
@@ -78,22 +79,19 @@ export const gameSlice = createSlice({
       // Update the tick timer to now. We now know the last time we performed this check.
       state.currentTime = Date.now();
     },
-    addEvents: (state) => {},
+    addEvents: (state, action) => {
+      state.activeEvents[action.payload.id] = action.payload;
+    },
   },
 });
 
-export const { start, pause, tick } = gameSlice.actions;
+export const { start, pause, tick, reset } = gameSlice.actions;
 
-export const getGameTime = (state: RootState) => {
-  if (!state.game.timer) {
-    return { minutes: "00", seconds: "00" };
-  }
+export const getGameTime = (state: RootState) =>
+  state.game.timer ? GameTimer.fromTimestamp(state.game.timer) : null;
 
-  const gameTime = GameTimer.fromTimestamp(state.game.timer);
-  return {
-    minutes: gameTime.getMinutes(),
-    seconds: gameTime.getSeconds(),
-  };
-};
+export const getActiveEvents = (state: RootState) => state.game.activeEvents;
+
+export const getFeed = (state: RootState) => state.game.feed;
 
 export default gameSlice.reducer;

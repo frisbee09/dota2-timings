@@ -17,35 +17,30 @@ const GreyBGWithHover: React.FC<{ children?: React.ReactNode }> = ({
   </div>
 );
 
-const ActionImage: React.FC<{
+const EventImage: React.FC<{
   children?: React.ReactNode;
   imageColor?: string;
 }> = ({ children, imageColor }) => (
-  <div
-    className={`w-10 h-10 rounded-3xl m-4 bg-white self-center bg-${
-      imageColor || "gray-200"
-    } border-2 border-${imageColor || "gray-200"}`}
-  >
-    {children}
-  </div>
+  <div className={`w-10 h-10 rounded-3xl m-4 self-center pt-1`}>{children}</div>
 );
 
-const ActionTitle: React.FC<{ children?: React.ReactNode }> = ({
-  children,
-}) => <h3 className="m-0 text-xl font-bold tracking-tight">{children}</h3>;
+const EventTitle: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+  <h3 className="m-0 text-xl font-bold tracking-tight">{children}</h3>
+);
 
-const ActionText: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
+const EventText: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <p className="mb-0 font-normal">{children}</p>
 );
 
-interface IActionProps {
+export interface IEventProps {
+  key?: string;
   title?: string;
   text?: string;
   image?: React.ReactNode;
   imageColor?: string;
 }
 
-const Action: React.FunctionComponent<IActionProps> = ({
+const Event: React.FunctionComponent<IEventProps> = ({
   title,
   text,
   image,
@@ -54,14 +49,14 @@ const Action: React.FunctionComponent<IActionProps> = ({
   return (
     <BackgroundWithGradient>
       <GreyBGWithHover>
-        <ActionImage imageColor={imageColor}>{image}</ActionImage>
+        <EventImage imageColor={imageColor}>{image}</EventImage>
         <div className="self-center">
-          <ActionTitle>{title}</ActionTitle>
-          <ActionText>{text}</ActionText>
+          <EventTitle>{title}</EventTitle>
+          <EventText>{text}</EventText>
         </div>
       </GreyBGWithHover>
     </BackgroundWithGradient>
   );
 };
 
-export default Action;
+export default Event;
