@@ -27,6 +27,7 @@ const ActiveEvents: React.FunctionComponent<IActiveEventsProps> = (props) => {
   const activeEvents = useAppSelector(getActiveEvents);
 
   const ActiveNode = Object.values(activeEvents)
+    .sort((a, b) => a.time - b.time)
     .map(mapActiveEventToProps)
     .map((p) => <Event {...p} />);
 
