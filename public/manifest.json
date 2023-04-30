@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dota 2 Timers",
+  "name": "A site to track various timers through a game of Dota 2.",
   "icons": [
     {
       "src": "favicon.ico",

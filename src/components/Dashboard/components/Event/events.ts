@@ -60,6 +60,14 @@ const RuneEvents: { [key: string]: GameEvent } = {
   },
 };
 
-export const DefaultGameEvents = { ...RuneEvents };
+const TormentorSpawn = {
+  tormentorSpawn: {
+    id: "tormentorSpawn",
+    name: "Tormentor",
+    time: 20 * 60 * 1000,
+  },
+};
+
+export const DefaultGameEvents = { ...RuneEvents, ...TormentorSpawn };
 
 export const AllEvents = { ...RuneEvents };
