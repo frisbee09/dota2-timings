@@ -70,8 +70,12 @@ export const gameSlice = createSlice({
 
         eventsToAlert.forEach((event) => {
           // Check whether the event will recur
-          if (event.interval && (!event.until || event.until > gameTime)) {
+          if (event.interval) {
             event.time += event.interval;
+            // Check whether the event has passed it's expiry
+            if (event.until && event.time > event.until) {
+              delete state.activeEvents[event.id];
+            }
           } else {
             // It doesn't, so we remove it from the list of active events
             delete state.activeEvents[event.id];
