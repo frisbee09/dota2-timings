@@ -39,7 +39,8 @@ const EventImage: React.FC<{
   className?: string;
 }> = ({ children, imageColor, className }) => (
   <div className={`${className} w-10 h-10 m-4 flex`}>
-    {React.cloneElement(children as any, { className: "rounded-full" })}
+    {React.isValidElement(children) &&
+      React.cloneElement(children as any, { className: "rounded-full" })}
   </div>
 );
 

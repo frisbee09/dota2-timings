@@ -1,6 +1,6 @@
 import * as React from "react";
 import Event, { IEventProps } from "../Event/Event";
-import { AllEvents, GameEvent } from "../Event/events";
+import { GameEvent } from "../Event/events";
 import { GameTimer } from "../../../../state/Game/GameTimer";
 import { useAppSelector } from "../../../../state/hooks";
 import { getActiveEvents } from "../../../../state/Game/gameSlice";
@@ -38,11 +38,6 @@ const Events: React.FunctionComponent<IEventsProps> = ({ className }) => {
     .map(mapActiveEventToProps)
     .map((p) => <Event {...p} />);
 
-  const InactiveNode = Object.values(AllEvents)
-    .filter((event) => !(event.id in activeEvents))
-    .map(mapActiveEventToProps)
-    .map((p) => <Event {...p} />);
-
   const NextEvent = activeEventsList[0];
 
   return (
@@ -54,13 +49,6 @@ const Events: React.FunctionComponent<IEventsProps> = ({ className }) => {
             <>
               <h1 className={`text-lg font-semibold`}>Next</h1>
               <Event {...mapActiveEventToProps(NextEvent)} />
-            </>
-          ) : undefined}
-
-          {InactiveNode.length ? (
-            <>
-              <h1 className="text-l font-semibold mt-2">Inactive</h1>
-              {InactiveNode}
             </>
           ) : undefined}
           {ActiveNode.length ? (

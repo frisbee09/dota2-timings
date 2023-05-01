@@ -27,8 +27,8 @@ export interface FeedEvent {
   text: string;
 }
 
-const RuneEvents: { [key: string]: GameEvent } = {
-  wisdomRune: {
+const RuneEvents: GameEvent[] = [
+  {
     id: "wisdomRune",
     name: "Wisdom Rune",
     time: 7 * 60 * 1000,
@@ -37,7 +37,7 @@ const RuneEvents: { [key: string]: GameEvent } = {
     alertTimeDelta: 30 * 1000,
     img: WisdomRune,
   },
-  bountyRune: {
+  {
     id: "bountyRune",
     name: "Bounty Rune",
     time: 0,
@@ -46,7 +46,7 @@ const RuneEvents: { [key: string]: GameEvent } = {
     alertTimeDelta: 30 * 1000,
     img: BountyRune,
   },
-  waterRune: {
+  {
     id: "waterRune",
     name: "Water Rune",
     time: 2 * 60 * 1000,
@@ -55,7 +55,7 @@ const RuneEvents: { [key: string]: GameEvent } = {
     alertTimeDelta: 10 * 1000,
     img: WaterRune,
   },
-  powerRune: {
+  {
     id: "powerRune",
     name: "Power Rune",
     time: 6 * 60 * 1000,
@@ -63,17 +63,14 @@ const RuneEvents: { [key: string]: GameEvent } = {
     alertTimeDelta: 10 * 1000,
     img: PowerRune,
   },
-};
+];
 
-const TormentorSpawn = {
-  tormentorSpawn: {
-    id: "tormentorSpawn",
-    name: "Tormentors spawn",
-    time: 20 * 60 * 1000,
-    img: Tormentor,
-  },
+const TormentorSpawn: GameEvent = {
+  id: "tormentorSpawn",
+  name: "Tormentors spawn",
+  time: 20 * 60 * 1000,
+  img: Tormentor,
 };
-
 const minToMs = (min: number) => min * 60 * 1000;
 const MIN_ROSH_RESPAWN_IN_MINUTES = 7;
 const MAX_ROSH_RESPAWN_IN_MINUTES = 11;
@@ -129,6 +126,16 @@ export const TormentorKilled = (side: string): GameEvent => ({
   img: Tormentor,
 });
 
-export const DefaultGameEvents = { ...RuneEvents, ...TormentorSpawn };
+export const TestEvent: GameEvent = {
+  id: "TEST",
+  name: "TestEvent",
+  time: 1000,
+  interval: 1000,
+  until: 3000,
+};
 
-export const AllEvents = { ...RuneEvents };
+export const DefaultGameEvents: GameEvent[] = [
+  ...RuneEvents,
+  TormentorSpawn,
+  TestEvent,
+];

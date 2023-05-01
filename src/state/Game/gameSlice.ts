@@ -23,7 +23,12 @@ const initialState: GameState = {
   pausedAt: null,
   isRunning: false,
 
-  activeEvents: DefaultGameEvents,
+  activeEvents: DefaultGameEvents.reduce<{
+    [key: string]: GameEvent;
+  }>((acc, event) => {
+    acc[event.id] = event;
+    return acc;
+  }, {}),
   feed: [],
 
   currentTime: Date.now(),
@@ -70,15 +75,20 @@ export const gameSlice = createSlice({
 
         eventsToAlert.forEach((event) => {
           // Check whether the event will recur
-          if (event.interval) {
-            event.time += event.interval;
-            // Check whether the event has passed it's expiry
-            if (event.until && event.time > event.until) {
-              delete state.activeEvents[event.id];
-            }
-          } else {
+          const newTime = event.time + (event.interval || 0);
+          const shouldRecur =
+            // Has an internal and...
+            event.interval !== undefined &&
+            // Has no until or until is gte new time.
+            (event.until === undefined || newTime <= event.until);
+
+          if (!shouldRecur) {
             // It doesn't, so we remove it from the list of active events
+            console.log("Deleting " + event.id);
             delete state.activeEvents[event.id];
+          } else {
+            // Set the next time on the event
+            event.time = newTime;
           }
         });
       }
