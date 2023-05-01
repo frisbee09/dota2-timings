@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dota2-timings/static/css/main.df05bfc5.css",
-    "main.js": "/dota2-timings/static/js/main.cf9c95b4.js",
+    "main.css": "/dota2-timings/static/css/main.2a3340ea.css",
+    "main.js": "/dota2-timings/static/js/main.c33c041e.js",
     "static/js/787.44129723.chunk.js": "/dota2-timings/static/js/787.44129723.chunk.js",
     "static/media/WisdomRune.webp": "/dota2-timings/static/media/WisdomRune.060d7a7162804be1e5d9.webp",
     "static/media/Tormentor.webp": "/dota2-timings/static/media/Tormentor.521af0fd921ccb62d694.webp",
@@ -10,12 +10,12 @@
     "static/media/Emoticon_doubledamage.webp": "/dota2-timings/static/media/Emoticon_doubledamage.41234740775157bdfcca.webp",
     "static/media/Emoticon_bountyrune.webp": "/dota2-timings/static/media/Emoticon_bountyrune.1e11b00de0e3cda7f3b2.webp",
     "index.html": "/dota2-timings/index.html",
-    "main.df05bfc5.css.map": "/dota2-timings/static/css/main.df05bfc5.css.map",
-    "main.cf9c95b4.js.map": "/dota2-timings/static/js/main.cf9c95b4.js.map",
+    "main.2a3340ea.css.map": "/dota2-timings/static/css/main.2a3340ea.css.map",
+    "main.c33c041e.js.map": "/dota2-timings/static/js/main.c33c041e.js.map",
     "787.44129723.chunk.js.map": "/dota2-timings/static/js/787.44129723.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df05bfc5.css",
-    "static/js/main.cf9c95b4.js"
+    "static/css/main.2a3340ea.css",
+    "static/js/main.c33c041e.js"
   ]
 }
