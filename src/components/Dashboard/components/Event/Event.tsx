@@ -38,7 +38,7 @@ const EventImage: React.FC<{
   imageColor?: string;
   className?: string;
 }> = ({ children, imageColor, className }) => (
-  <div className={`${className} w-10 h-10 m-4 flex`}>
+  <div className={`w-10 h-10 flex ${className}`}>
     {React.isValidElement(children) &&
       React.cloneElement(children as any, { className: "rounded-full" })}
   </div>
@@ -94,7 +94,9 @@ export const Event: React.FunctionComponent<IEventProps> = ({
   return (
     <BackgroundWithGradient>
       <GreyBGWithHover>
-        <EventImage imageColor={imageColor}>{image}</EventImage>
+        <EventImage imageColor={imageColor} className="m-4 mr-6">
+          {image}
+        </EventImage>
         <div className="self-center flex-1">
           <EventTitle>{title}</EventTitle>
           <EventText>{text}</EventText>
