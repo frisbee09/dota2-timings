@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.css": "/dota2-timings/static/css/main.dfeae637.css",
-    "main.js": "/dota2-timings/static/js/main.07e496fd.js",
+    "main.css": "/dota2-timings/static/css/main.df05bfc5.css",
+    "main.js": "/dota2-timings/static/js/main.cf9c95b4.js",
     "static/js/787.44129723.chunk.js": "/dota2-timings/static/js/787.44129723.chunk.js",
+    "static/media/WisdomRune.webp": "/dota2-timings/static/media/WisdomRune.060d7a7162804be1e5d9.webp",
+    "static/media/Tormentor.webp": "/dota2-timings/static/media/Tormentor.521af0fd921ccb62d694.webp",
+    "static/media/Emoticon_rosh.webp": "/dota2-timings/static/media/Emoticon_rosh.61881db59d60e07165b9.webp",
     "static/media/Emoticon_water_rune.webp": "/dota2-timings/static/media/Emoticon_water_rune.27f38371bf97c21e0140.webp",
     "static/media/Emoticon_doubledamage.webp": "/dota2-timings/static/media/Emoticon_doubledamage.41234740775157bdfcca.webp",
     "static/media/Emoticon_bountyrune.webp": "/dota2-timings/static/media/Emoticon_bountyrune.1e11b00de0e3cda7f3b2.webp",
     "index.html": "/dota2-timings/index.html",
-    "main.dfeae637.css.map": "/dota2-timings/static/css/main.dfeae637.css.map",
-    "main.07e496fd.js.map": "/dota2-timings/static/js/main.07e496fd.js.map",
+    "main.df05bfc5.css.map": "/dota2-timings/static/css/main.df05bfc5.css.map",
+    "main.cf9c95b4.js.map": "/dota2-timings/static/js/main.cf9c95b4.js.map",
     "787.44129723.chunk.js.map": "/dota2-timings/static/js/787.44129723.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dfeae637.css",
-    "static/js/main.07e496fd.js"
+    "static/css/main.df05bfc5.css",
+    "static/js/main.cf9c95b4.js"
   ]
 }
