@@ -3,6 +3,9 @@ import BountyRune from "./imgs/Emoticon_bountyrune.webp";
 import WaterRune from "./imgs/Emoticon_water_rune.webp";
 import PowerRune from "./imgs/Emoticon_doubledamage.webp";
 import Roshan from "./imgs/Emoticon_rosh.webp";
+import WisdomRune from "./imgs/WisdomRune.webp";
+import Tormentor from "./imgs/Tormentor.webp";
+
 export interface GameEvent {
   id: string;
   name: string;
@@ -32,14 +35,15 @@ const RuneEvents: { [key: string]: GameEvent } = {
     interval: 7 * 60 * 1000,
     until: undefined,
     alertTimeDelta: 30 * 1000,
+    img: WisdomRune,
   },
   bountyRune: {
     id: "bountyRune",
     name: "Bounty Rune",
     time: 0,
-    interval: 1000 * 1 || 3 * 60 * 1000,
+    interval: 1 * 60 * 1000,
     until: undefined,
-    // alertTimeDelta: 30 * 1000,
+    alertTimeDelta: 30 * 1000,
     img: BountyRune,
   },
   waterRune: {
@@ -64,8 +68,9 @@ const RuneEvents: { [key: string]: GameEvent } = {
 const TormentorSpawn = {
   tormentorSpawn: {
     id: "tormentorSpawn",
-    name: "Tormentor",
+    name: "Tormentors spawn",
     time: 20 * 60 * 1000,
+    img: Tormentor,
   },
 };
 
@@ -116,11 +121,12 @@ export const RoshanEvents: GameEvent[] = ROSH_EVENTS_CONFIG.map((cfg, idx) => ({
   img: Roshan,
 }));
 
-export const TormentorKilled = (side: string) => ({
+export const TormentorKilled = (side: string): GameEvent => ({
   id: `TormentorRespawn${side}`,
   name: `${side}-side Tormentor respawned`,
   time: 0,
   relativeTime: 10 * 60 * 1000,
+  img: Tormentor,
 });
 
 export const DefaultGameEvents = { ...RuneEvents, ...TormentorSpawn };

@@ -29,7 +29,7 @@ const Feed: React.FunctionComponent<IFeedProps> = ({ className }) => {
               <Event
                 key={`${item.id}${idx}`}
                 title={item.name}
-                image={<img src={item.img} />}
+                image={<img src={item.img} className="rounded-2xl" />}
                 text={`${pastTense ? "Spawned" : "Spawns"} at ${timeString}`}
               />
             );

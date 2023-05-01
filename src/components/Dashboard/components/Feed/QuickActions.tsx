@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import { RoshanEvents, TormentorKilled } from "../Event/events";
 import { addEvents, getGameTime } from "../../../../state/Game/gameSlice";
 import Roshan from "../Event/imgs/Emoticon_rosh.webp";
+import Tormentor from "../Event/imgs/Tormentor.webp";
 
 interface IQuickActionsProps {}
 
@@ -30,12 +31,14 @@ const QuickActions: React.FunctionComponent<IQuickActionsProps> = (props) => {
         onClick={() =>
           dispatch(addEvents({ events: [TormentorKilled("Dire")] }))
         }
+        image={<img src={Tormentor} />}
       />
       <QuickAction
         title="Start Radient Tormentor Timer"
         onClick={() =>
           dispatch(addEvents({ events: [TormentorKilled("Radient")] }))
         }
+        image={<img src={Tormentor} />}
       />
     </div>
   );
