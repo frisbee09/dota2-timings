@@ -9,9 +9,11 @@ import {
 } from "../../../../state/Game/gameSlice";
 import { Button } from "../../../Button/Button";
 
-interface IGameClockProps {}
+interface IGameClockProps {
+  className?: string;
+}
 
-const GameClock: React.FunctionComponent<IGameClockProps> = (props) => {
+const GameClock: React.FunctionComponent<IGameClockProps> = ({ className }) => {
   const dispatch = useAppDispatch();
   const gameTime = useAppSelector(getGameTime);
   const runningClock = useAppSelector((state) => state.game.isRunning);
@@ -26,7 +28,7 @@ const GameClock: React.FunctionComponent<IGameClockProps> = (props) => {
   }, [runningClock]);
 
   return (
-    <div className="flex justify-stretch w-full gap-4 mb-6">
+    <div className={`flex gap-4 ${className}`}>
       <h1 className="text-3xl font-bold">{gameTime?.toString() || "00:00"}</h1>
       {runningClock ? (
         <Button onClick={() => dispatch(pause())}>Pause</Button>

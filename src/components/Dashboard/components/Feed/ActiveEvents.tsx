@@ -4,8 +4,10 @@ import { AllEvents, GameEvent } from "../Event/events";
 import { GameTimer } from "../../../../state/Game/GameTimer";
 import { useAppSelector } from "../../../../state/hooks";
 import { getActiveEvents } from "../../../../state/Game/gameSlice";
+import { Header } from "../../Header";
+import { confirmGradient, gradientText } from "../../../../styling/gradients";
 
-interface IActiveEventsProps {}
+interface IEventsProps {}
 
 const getNextEventAtString = (time: number) => {
   return new GameTimer(time).toString();
@@ -23,11 +25,14 @@ const mapInactiveEventToProps = (event: GameEvent): IEventProps => ({
   text: `Disabled.`,
 });
 
-const ActiveEvents: React.FunctionComponent<IActiveEventsProps> = (props) => {
+const Events: React.FunctionComponent<IEventsProps> = (props) => {
   const activeEvents = useAppSelector(getActiveEvents);
+  const activeEventsList = Object.values(activeEvents).sort(
+    (a, b) => a.time - b.time
+  );
 
-  const ActiveNode = Object.values(activeEvents)
-    .sort((a, b) => a.time - b.time)
+  const ActiveNode = activeEventsList
+    .slice(1)
     .map(mapActiveEventToProps)
     .map((p) => <Event {...p} />);
 
@@ -36,12 +41,15 @@ const ActiveEvents: React.FunctionComponent<IActiveEventsProps> = (props) => {
     .map(mapActiveEventToProps)
     .map((p) => <Event {...p} />);
 
+  const NextEvent = activeEventsList[0];
+
   return (
-    <div className="flex flex-col gap-2">
-      {ActiveNode.length ? (
+    <div className="rounded-xl p-4 w-full flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40">
+      <Header>Events</Header>
+      {NextEvent ? (
         <>
-          <h1 className="text-l font-semibold">Active</h1>
-          {ActiveNode}
+          <h1 className={`text-lg font-semibold`}>Next</h1>
+          <Event {...mapActiveEventToProps(NextEvent)} />
         </>
       ) : undefined}
       {InactiveNode.length ? (
@@ -50,8 +58,14 @@ const ActiveEvents: React.FunctionComponent<IActiveEventsProps> = (props) => {
           {InactiveNode}
         </>
       ) : undefined}
+      {ActiveNode.length ? (
+        <>
+          <h1 className="text-lg font-semibold">Active</h1>
+          {ActiveNode}
+        </>
+      ) : undefined}
     </div>
   );
 };
 
-export default ActiveEvents;
+export default Events;
