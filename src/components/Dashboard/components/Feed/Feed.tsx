@@ -5,18 +5,20 @@ import { useAppSelector } from "../../../../state/hooks";
 import { GameTimer } from "../../../../state/Game/GameTimer";
 import { getGameTime } from "../../../../state/Game/gameSlice";
 
-interface IFeedProps {}
+interface IFeedProps {
+  className?: string;
+}
 
-const Feed: React.FunctionComponent<IFeedProps> = (props) => {
+const Feed: React.FunctionComponent<IFeedProps> = ({ className }) => {
   const feed = useAppSelector((state) => state.game.feed);
   const timer = useAppSelector(getGameTime);
 
   return (
-    <div className="rounded-xl p-4 w-full flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40 justify-end">
-      <div className="flex-1">
-        <Header>Feed</Header>
-      </div>
-      {feed.slice(-8).map((item, idx) => {
+    <div
+      className={`${className} rounded-xl p-4 flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40 justify-start`}
+    >
+      <Header className="mb-4">Feed</Header>
+      {feed.reverse().map((item, idx) => {
         const gt = new GameTimer(item.time);
         const timeString = gt.toString();
         const pastTense =

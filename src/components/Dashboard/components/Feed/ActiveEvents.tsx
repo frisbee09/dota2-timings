@@ -7,8 +7,6 @@ import { getActiveEvents } from "../../../../state/Game/gameSlice";
 import { Header } from "../../Header";
 import { confirmGradient, gradientText } from "../../../../styling/gradients";
 
-interface IEventsProps {}
-
 const getNextEventAtString = (time: number) => {
   return new GameTimer(time).toString();
 };
@@ -25,7 +23,11 @@ const mapInactiveEventToProps = (event: GameEvent): IEventProps => ({
   text: `Disabled.`,
 });
 
-const Events: React.FunctionComponent<IEventsProps> = (props) => {
+interface IEventsProps {
+  className?: string;
+}
+
+const Events: React.FunctionComponent<IEventsProps> = ({ className }) => {
   const activeEvents = useAppSelector(getActiveEvents);
   const activeEventsList = Object.values(activeEvents).sort(
     (a, b) => a.time - b.time
@@ -44,8 +46,8 @@ const Events: React.FunctionComponent<IEventsProps> = (props) => {
   const NextEvent = activeEventsList[0];
 
   return (
-    <div className="rounded-xl p-4 w-full flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40">
-      <Header>Events</Header>
+    <div className={`${className} rounded-xl p-4 flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40`}>
+      <Header className="mb-2">Events</Header>
       {NextEvent ? (
         <>
           <h1 className={`text-lg font-semibold`}>Next</h1>
@@ -54,13 +56,13 @@ const Events: React.FunctionComponent<IEventsProps> = (props) => {
       ) : undefined}
       {InactiveNode.length ? (
         <>
-          <h1 className="text-l font-semibold">Inactive</h1>
+          <h1 className="text-l font-semibold mt-2">Inactive</h1>
           {InactiveNode}
         </>
       ) : undefined}
       {ActiveNode.length ? (
         <>
-          <h1 className="text-lg font-semibold">Active</h1>
+          <h1 className="text-lg font-semibold mt-2">Active</h1>
           {ActiveNode}
         </>
       ) : undefined}
