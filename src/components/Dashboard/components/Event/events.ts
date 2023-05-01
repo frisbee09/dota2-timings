@@ -137,5 +137,5 @@ export const TestEvent: GameEvent = {
 export const DefaultGameEvents: GameEvent[] = [
   ...RuneEvents,
   TormentorSpawn,
-  TestEvent,
+  // TestEvent,
 ];

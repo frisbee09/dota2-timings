@@ -20,8 +20,7 @@ const HeaderBar: React.FunctionComponent<IHeaderProps> = ({ children }) => {
   return (
     <>
       <div className="bg-transparent">
-        <div className="max-w-screen-xl flex flex-nowrap items-center justify-between mx-auto p-4">
-          <Header>Dota 2 Timers</Header>
+        <div className="max-w-screen-xl flex flex-wrap gap-3 items-center justify-between mx-auto p-4 pb-0">
           {children}
         </div>
       </div>
