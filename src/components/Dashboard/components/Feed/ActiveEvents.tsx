@@ -46,26 +46,31 @@ const Events: React.FunctionComponent<IEventsProps> = ({ className }) => {
   const NextEvent = activeEventsList[0];
 
   return (
-    <div className={`${className} rounded-xl p-4 flex flex-col gap-2 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40`}>
-      <Header className="mb-2">Events</Header>
-      {NextEvent ? (
-        <>
-          <h1 className={`text-lg font-semibold`}>Next</h1>
-          <Event {...mapActiveEventToProps(NextEvent)} />
-        </>
-      ) : undefined}
-      {InactiveNode.length ? (
-        <>
-          <h1 className="text-l font-semibold mt-2">Inactive</h1>
-          {InactiveNode}
-        </>
-      ) : undefined}
-      {ActiveNode.length ? (
-        <>
-          <h1 className="text-lg font-semibold mt-2">Active</h1>
-          {ActiveNode}
-        </>
-      ) : undefined}
+    <div className={`${className}`}>
+      <div className="w-full h-full min-h-0 flex flex-col gap-2">
+        <div className="relative w-full h-full min-h-0 overflow-y-auto flex flex-1 flex-col gap-2 rounded-xl p-4 bg-gradient-to-br from-zinc-900/90 via-zinc-900/40 via-zinc-900/70 to-zinc-900/40">
+          <Header className="mb-2">Events</Header>
+          {NextEvent ? (
+            <>
+              <h1 className={`text-lg font-semibold`}>Next</h1>
+              <Event {...mapActiveEventToProps(NextEvent)} />
+            </>
+          ) : undefined}
+
+          {InactiveNode.length ? (
+            <>
+              <h1 className="text-l font-semibold mt-2">Inactive</h1>
+              {InactiveNode}
+            </>
+          ) : undefined}
+          {ActiveNode.length ? (
+            <>
+              <h1 className="text-lg font-semibold mt-2">Active</h1>
+              {ActiveNode}
+            </>
+          ) : undefined}
+        </div>
+      </div>
     </div>
   );
 };

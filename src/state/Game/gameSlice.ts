@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { GameTimer } from "./GameTimer";
 import {
   DefaultGameEvents,
@@ -53,13 +53,16 @@ export const gameSlice = createSlice({
         const gameTime = GameTimer.fromTimestamp(state.timer).getDuration();
         const previousCheckAt = gameTime - (Date.now() - state.currentTime);
 
+        // Update the tick timer to now. We now know the last time we performed this check.
+        state.currentTime = Date.now();
+
         const eventsToAlert = Object.values(state.activeEvents).filter(
           (event) => {
             const alertTime = Math.max(
               event.time - (event?.alertTimeDelta || 0),
               0
             );
-            return alertTime >= previousCheckAt && alertTime <= gameTime;
+            return alertTime <= previousCheckAt || alertTime <= gameTime;
           }
         );
 
@@ -75,17 +78,47 @@ export const gameSlice = createSlice({
           }
         });
       }
-
-      // Update the tick timer to now. We now know the last time we performed this check.
-      state.currentTime = Date.now();
     },
-    addEvents: (state, action) => {
-      state.activeEvents[action.payload.id] = action.payload;
+    addEvents: (state, action: PayloadAction<{ events: GameEvent[] }>) => {
+      if (!state.timer) {
+        alert("Start a game before adding new events");
+        return;
+      }
+
+      const currentTime = GameTimer.fromTimestamp(state.timer).getDuration();
+      action.payload.events.map((event) => {
+        state.activeEvents[event.id] = {
+          ...event,
+          time:
+            event.relativeTime !== undefined
+              ? currentTime + event.relativeTime
+              : event.time,
+        };
+      });
+    },
+    setTimer: (state, action: PayloadAction<{ time: string }>) => {
+      if (action.payload.time.includes(":")) {
+        const [minutes, seconds] = action.payload.time.split(":");
+        const durationInMs =
+          (parseInt(minutes) * 60 + parseInt(seconds)) * 1000;
+        const gt = new GameTimer(durationInMs);
+
+        // Now quickly fast forward to the new time
+        let pseudoCurrentTime = state.currentTime;
+        let activeEvents = Object.values(state.activeEvents).sort(
+          (a, b) => b.time - a.time
+        );
+
+        while (activeEvents.some((event) => event.time <= gt.getDuration())) {}
+      } else {
+        alert(`${action.payload.time} not valid, needs to be in form xx:yy`);
+      }
     },
   },
 });
 
-export const { start, pause, tick, reset } = gameSlice.actions;
+export const { start, pause, tick, reset, addEvents, setTimer } =
+  gameSlice.actions;
 
 export const getGameTime = (state: RootState) =>
   state.game.timer ? GameTimer.fromTimestamp(state.game.timer) : null;
