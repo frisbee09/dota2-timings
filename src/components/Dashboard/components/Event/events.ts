@@ -41,7 +41,7 @@ const RuneEvents: { [key: string]: GameEvent } = {
     id: "bountyRune",
     name: "Bounty Rune",
     time: 0,
-    interval: 1 * 60 * 1000,
+    interval: 3 * 60 * 1000,
     until: undefined,
     alertTimeDelta: 30 * 1000,
     img: BountyRune,
